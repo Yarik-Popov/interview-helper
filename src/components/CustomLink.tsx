@@ -4,16 +4,16 @@ import React from 'react';
 interface CustomLinkProps {
     path: string;
     field: string;
-    onClick: () => void;
+    onClick: () => boolean;
 }
 export default function CustomLink(props: CustomLinkProps) {
     const navigate = useNavigate();
 
     function goTo() {
         if(props.onClick !== undefined){
-            props.onClick();
+            if(props.onClick())
+                navigate(props.path);
         }
-        navigate(props.path);
     }
 
     return (

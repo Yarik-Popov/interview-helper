@@ -1,20 +1,25 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 // import { ChangePageButton } from './pages/SetupWindow';
-import { useNavigate } from 'react-router-dom';
+import { Route, Routes } from "react-router-dom"
+import { PATH_HOME, PATH_INTERVIEW, PATH_SETUP } from './constants/paths';
+import SetupWindow from './pages/SetupPage';
+import InterviewPages from './pages/InterviewPage';
+import Home from './pages/HomePage';
 
 function App() {
-  const history = useNavigate();
-
-  function handleButtonClick() {
-    history('/setup')
-  }
+  const questions = ["What is your name?", "What is your quest?", "What is your favorite color?"];
 
   return (
     <>
-      <button onClick={handleButtonClick}>Go to setup</button>
+    
+    <Routes>
+      <Route path={PATH_HOME} element={<Home />} />
+      <Route path={PATH_INTERVIEW} element={<InterviewPages questions={questions}/>} />
+      <Route path={PATH_SETUP} element={<SetupWindow questions={questions}/>} />
+    </Routes>
     </>
+    
   );
 }
 
